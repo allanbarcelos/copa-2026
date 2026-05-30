@@ -1,0 +1,463 @@
+/* ── Reset ─────────────────────────────────────────────────────────────── */
+*, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
+:root {
+  --bg:        #080c16;
+  --surface:   #0d1524;
+  --card:      #111d2e;
+  --border:    #1e2d42;
+  --border-hi: #2a4060;
+  --green:     #00d46a;
+  --gold:      #ffc932;
+  --blue:      #4080c8;
+  --red:       #e05050;
+  --text:      #dde5f0;
+  --muted:     #56687a;
+}
+
+body {
+  background: var(--bg);
+  color: var(--text);
+  font-family: 'Inter', 'Segoe UI', system-ui, -apple-system, sans-serif;
+  min-height: 100vh;
+}
+
+.copa-app { min-height: 100vh; }
+
+/* ── Header ────────────────────────────────────────────────────────────── */
+.copa-header {
+  background: linear-gradient(160deg, #0a1830 0%, #071220 100%);
+  padding: 32px 24px 28px;
+  text-align: center;
+  border-bottom: 1px solid var(--border);
+  position: relative;
+  overflow: hidden;
+}
+.header-glow {
+  position: absolute; inset: 0;
+  background: radial-gradient(ellipse 60% 80% at 50% -20%, rgba(0,212,106,.12) 0%, transparent 70%);
+  pointer-events: none;
+}
+.copa-header h1 {
+  font-size: clamp(1.6rem, 4vw, 2.6rem);
+  font-weight: 900;
+  background: linear-gradient(120deg, var(--green) 10%, var(--gold) 90%);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  background-clip: text;
+  position: relative;
+}
+.copa-header p { color: var(--muted); font-size: .85rem; margin-top: 6px; position: relative; }
+
+/* ── Language selector ─────────────────────────────────────────────────── */
+.lang-selector {
+  display: flex;
+  justify-content: flex-end;
+  gap: 6px;
+  position: absolute;
+  top: 16px;
+  right: 20px;
+}
+
+.lang-btn {
+  display: flex;
+  align-items: center;
+  gap: 5px;
+  background: rgba(255,255,255,.06);
+  border: 1px solid var(--border);
+  border-radius: 6px;
+  padding: 4px 8px;
+  cursor: pointer;
+  color: var(--muted);
+  font-size: .72rem;
+  font-weight: 600;
+  letter-spacing: .5px;
+  transition: border-color .15s, background .15s, color .15s;
+}
+
+.lang-btn:hover {
+  border-color: var(--border-hi);
+  color: var(--text);
+}
+
+.lang-btn.active {
+  border-color: var(--green);
+  background: rgba(0,212,106,.1);
+  color: var(--green);
+}
+
+.lang-flag { width: 16px; height: 12px; border-radius: 2px; }
+.lang-label { line-height: 1; }
+
+/* ── Section wrapper ───────────────────────────────────────────────────── */
+.copa-section { padding: 0 0 40px; }
+
+.sec-title {
+  text-align: center;
+  padding: 30px 16px 20px;
+  font-size: .68rem;
+  font-weight: 700;
+  color: var(--muted);
+  text-transform: uppercase;
+  letter-spacing: 4px;
+}
+.sec-title span {
+  border: 1px solid var(--border);
+  border-radius: 20px;
+  padding: 6px 22px;
+}
+
+/* ══════════════════════════════════════════════════════════════════════════
+   GROUP PANELS
+══════════════════════════════════════════════════════════════════════════ */
+.groups-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(520px, 1fr));
+  gap: 16px;
+  padding: 0 16px;
+  max-width: 1440px;
+  margin: 0 auto;
+}
+
+/* ── Group panel ───────────────────────────────────────────────────────── */
+.group-panel {
+  background: var(--card);
+  border: 1px solid var(--border);
+  border-radius: 12px;
+  overflow: hidden;
+  transition: border-color .2s;
+}
+.group-panel:hover { border-color: var(--border-hi); }
+
+/* Panel header */
+.gp-header {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  padding: 10px 14px;
+  background: var(--surface);
+  border-bottom: 1px solid var(--border);
+}
+.gp-badge {
+  width: 28px; height: 28px;
+  background: var(--green);
+  color: #000;
+  font-weight: 900;
+  font-size: .82rem;
+  border-radius: 6px;
+  display: flex; align-items: center; justify-content: center;
+  flex-shrink: 0;
+}
+.gp-title { font-size: .82rem; color: var(--muted); font-weight: 600; flex: 1; }
+.gp-flags { display: flex; gap: 4px; font-size: 1.2rem; }
+
+/* ── Rounds (bracket layout) ───────────────────────────────────────────── */
+.gp-rounds {
+  display: flex;
+  gap: 0;
+  padding: 12px 14px 0;
+  border-bottom: 1px solid var(--border);
+}
+
+.gp-round-col {
+  flex: 1;
+  display: flex;
+  flex-direction: column;
+  gap: 0;
+  min-width: 0;
+}
+
+/* connector between rounds */
+.gp-round-col + .gp-round-col {
+  border-left: 1px solid var(--border);
+  margin-left: 10px;
+  padding-left: 10px;
+}
+
+.gp-round-label {
+  font-size: .6rem;
+  font-weight: 700;
+  text-transform: uppercase;
+  letter-spacing: 2px;
+  color: var(--muted);
+  text-align: center;
+  padding-bottom: 8px;
+}
+
+.gp-round-matches {
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+  padding-bottom: 12px;
+}
+
+/* ── Group match card ──────────────────────────────────────────────────── */
+.gm-card {
+  background: var(--surface);
+  border: 1px solid var(--border);
+  border-radius: 7px;
+  overflow: hidden;
+  transition: border-color .15s;
+}
+.gm-card:hover    { border-color: var(--border-hi); }
+.gm-card.gm-done  { border-color: rgba(0,212,106,.3); }
+
+.gm-row {
+  display: flex;
+  align-items: center;
+  gap: 6px;
+  padding: 6px 8px;
+}
+.gm-row + .gm-row { border-top: 1px solid var(--border); }
+.gm-row.won  { background: rgba(0,212,106,.1); }
+.gm-row.lost { opacity: .45; }
+
+.gm-flag { width: 20px; height: 15px; flex-shrink: 0; border-radius: 2px; }
+.gm-name {
+  flex: 1;
+  font-size: .76rem;
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+}
+/* ── Match date badge ──────────────────────────────────────────────────── */
+.match-date {
+  display: flex;
+  align-items: center;
+  gap: 4px;
+  padding: 3px 8px;
+  background: rgba(255,255,255,.04);
+  border-bottom: 1px solid var(--border);
+  font-size: .62rem;
+}
+.match-date-day  { color: var(--muted); font-weight: 600; }
+.match-date-time { color: var(--blue);  font-weight: 700; margin-left: 2px; }
+.ko-date { padding: 2px 9px; }
+
+.gm-score {
+  width: 30px;
+  background: var(--bg);
+  border: 1px solid var(--border);
+  border-radius: 4px;
+  color: var(--text);
+  text-align: center;
+  padding: 2px 1px;
+  font-size: .78rem;
+  font-weight: 700;
+  flex-shrink: 0;
+}
+.gm-score:focus   { outline: none; border-color: var(--green); }
+.gm-score:disabled { opacity: .3; cursor: not-allowed; }
+
+/* ── Group standings table ─────────────────────────────────────────────── */
+.g-standings { padding: 12px 14px; }
+
+.g-standings-head,
+.g-standings-row {
+  display: grid;
+  /* #  team     J V E D  Pts  SG  GP */
+  grid-template-columns: 20px 1fr 24px 24px 24px 24px 34px 32px 28px;
+  align-items: center;
+  gap: 2px;
+  padding: 4px 6px;
+  font-size: .72rem;
+}
+
+.g-standings-head {
+  color: var(--muted);
+  font-weight: 700;
+  font-size: .62rem;
+  text-transform: uppercase;
+  letter-spacing: 1px;
+  border-bottom: 1px solid var(--border);
+  padding-bottom: 6px;
+  margin-bottom: 2px;
+}
+
+.g-standings-row {
+  border-radius: 5px;
+  transition: background .12s;
+}
+.g-standings-row:hover { background: rgba(255,255,255,.03); }
+.g-standings-row.adv   { background: rgba(0,212,106,.07); }
+.g-standings-row.third { background: rgba(255,201,50,.06); }
+
+.gs-pos { text-align: center; font-weight: 700; font-size: .68rem; color: var(--muted); }
+.gs-pos-1 { color: var(--green); }
+.gs-pos-2 { color: var(--blue); }
+.gs-pos-3 { color: var(--gold); }
+
+.gs-team {
+  display: flex;
+  align-items: center;
+  gap: 5px;
+  min-width: 0;
+}
+.gs-flag  { width: 18px; height: 13px; flex-shrink: 0; border-radius: 2px; }
+.gs-tname { font-size: .74rem; white-space: nowrap; overflow: hidden; text-overflow: ellipsis; }
+
+.gs-stat { text-align: center; color: var(--muted); }
+.gs-stat.bold { color: var(--text); font-weight: 700; }
+
+.g-standings-legend {
+  margin-top: 8px;
+  font-size: .65rem;
+  color: var(--muted);
+  padding-left: 6px;
+}
+.leg.adv   { color: var(--green); }
+.leg.third { color: var(--gold); }
+
+/* ══════════════════════════════════════════════════════════════════════════
+   BEST THIRDS
+══════════════════════════════════════════════════════════════════════════ */
+.thirds-bar {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 8px;
+  justify-content: center;
+  padding: 0 16px;
+  max-width: 1100px;
+  margin: 0 auto;
+}
+.third-chip {
+  background: transparent;
+  border: 1px dashed var(--border);
+  border-radius: 20px;
+  padding: 5px 14px;
+  font-size: .78rem;
+  display: flex; align-items: center; gap: 6px;
+  color: var(--muted);
+}
+.third-chip.filled {
+  background: rgba(255,201,50,.06);
+  border: 1px solid rgba(255,201,50,.4);
+  color: var(--gold);
+}
+.third-chip em { color: var(--muted); font-style: normal; font-size: .72rem; }
+
+/* ══════════════════════════════════════════════════════════════════════════
+   KNOCKOUT BRACKET
+══════════════════════════════════════════════════════════════════════════ */
+.bracket-scroll { overflow-x: auto; padding: 0 16px 48px; }
+
+.bracket {
+  display: flex;
+  align-items: flex-start;
+  min-width: max-content;
+}
+
+/* ── KO round column ───────────────────────────────────────────────────── */
+.ko-col {
+  display: flex;
+  flex-direction: column;
+  width: 192px;
+}
+.ko-col-label {
+  height: 28px;
+  display: flex; align-items: center; justify-content: center;
+  font-size: .62rem;
+  font-weight: 700;
+  text-transform: uppercase;
+  letter-spacing: 2px;
+  color: var(--muted);
+  padding: 0 4px 10px;
+}
+.ko-slot {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: 22px 6px;
+}
+
+/* ── KO match card ─────────────────────────────────────────────────────── */
+.ko-card {
+  background: var(--card);
+  border: 1px solid var(--border);
+  border-radius: 8px;
+  overflow: hidden;
+  width: 100%;
+  transition: border-color .18s, box-shadow .18s;
+}
+.ko-card:hover  { border-color: var(--border-hi); box-shadow: 0 0 12px rgba(64,128,200,.12); }
+.ko-card.ko-done { border-color: rgba(0,212,106,.35); }
+
+.ko-row {
+  display: flex;
+  align-items: center;
+  gap: 6px;
+  padding: 7px 9px;
+}
+.ko-row + .ko-row { border-top: 1px solid var(--border); }
+.ko-row.won  { background: rgba(0,212,106,.1); }
+.ko-row.lost { opacity: .42; }
+
+.ko-flag { width: 20px; height: 15px; flex-shrink: 0; border-radius: 2px; }
+.ko-name {
+  flex: 1;
+  font-size: .74rem;
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+}
+.ko-name.tbd { color: var(--muted); font-style: italic; font-size: .7rem; }
+.ko-score {
+  width: 32px;
+  background: var(--bg);
+  border: 1px solid var(--border);
+  border-radius: 4px;
+  color: var(--text);
+  text-align: center;
+  padding: 2px 1px;
+  font-size: .78rem;
+  font-weight: 700;
+  flex-shrink: 0;
+}
+.ko-score:focus   { outline: none; border-color: var(--blue); }
+.ko-score:disabled { opacity: .3; cursor: not-allowed; }
+
+/* ── Trophy ────────────────────────────────────────────────────────────── */
+.trophy-col {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  padding: 0 24px;
+  gap: 6px;
+}
+.trophy-icon {
+  width: 80px;
+  height: auto;
+  animation: trophy-pulse 2.4s ease-in-out infinite;
+  filter: drop-shadow(0 0 8px rgba(255,201,50,0.5));
+}
+@keyframes trophy-pulse {
+  0%, 100% { transform: scale(1);    filter: drop-shadow(0 0 0px var(--gold)); }
+  50%       { transform: scale(1.1); filter: drop-shadow(0 0 10px var(--gold)); }
+}
+.champion-flag { width: 56px; height: 42px; border-radius: 4px; }
+.champion-name {
+  font-size: .85rem;
+  font-weight: 700;
+  color: var(--gold);
+  text-align: center;
+  max-width: 100px;
+}
+
+/* ── Flag icons overrides ──────────────────────────────────────────────── */
+/* fis = square variant; we use it for consistent sizing */
+.fi.fis { background-size: cover; }
+
+.gp-team-flag { width: 22px; height: 16px; border-radius: 2px; flex-shrink: 0; }
+.fi-placeholder { width: 20px; height: 15px; background: var(--border); border-radius: 2px; display: inline-block; }
+
+/* ── Misc ──────────────────────────────────────────────────────────────── */
+input[type=number]::-webkit-outer-spin-button,
+input[type=number]::-webkit-inner-spin-button { -webkit-appearance: none; margin: 0; }
+input[type=number] { -moz-appearance: textfield; }
+
+/* ── Responsive ────────────────────────────────────────────────────────── */
+@media (max-width: 600px) {
+  .groups-grid { grid-template-columns: 1fr; padding: 0 8px; }
+  .gp-rounds { overflow-x: auto; }
+}
