@@ -547,6 +547,16 @@ input[type=number]::-webkit-outer-spin-button,
 input[type=number]::-webkit-inner-spin-button { -webkit-appearance: none; margin: 0; }
 input[type=number] { -moz-appearance: textfield; }
 
+/* ── Footer ─────────────────────────────────────────────────────────────── */
+.copa-footer {
+  text-align: center;
+  padding: 24px;
+  margin-top: 48px;
+  border-top: 1px solid var(--border);
+  font-size: .78rem;
+  color: var(--muted);
+}
+
 /* ── Responsive ────────────────────────────────────────────────────────── */
 @media (max-width: 600px) {
   .groups-grid { grid-template-columns: 1fr; padding: 0 8px; }

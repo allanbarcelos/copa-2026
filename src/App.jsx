@@ -181,6 +181,11 @@ export default function App() {
         </div>
       </section>
 
+      {/* ── Footer ── */}
+      <footer className="copa-footer">
+        <span>© {new Date().getFullYear()} Barcelos.Dev</span>
+      </footer>
+
     </div>
   )
 }
