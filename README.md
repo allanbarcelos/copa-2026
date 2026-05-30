@@ -1,113 +1,119 @@
-# Copa do Mundo 2026 — Bracket interativo
+ # FIFA World Cup 2026 — Interactive Bracket
 
-SPA em React que exibe o chaveamento completo da Copa do Mundo FIFA 2026, com atualização em tempo real via Socket.IO.
+> 🇧🇷 [Versão em Português](README.pt.md)
 
-## Funcionalidades
+React SPA displaying the complete FIFA World Cup 2026 bracket with real-time updates via Socket.IO.
 
-- **Fase de grupos** — 12 grupos com 6 partidas cada, classificação automática por pontos, saldo de gols e confronto direto (regras FIFA)
-- **Melhores terceiros** — seleção automática dos 8 melhores terceiros colocados
-- **Fase eliminatória** — chave R32 → R16 → QF → SF → Final com atualização automática dos confrontos
-- **Tempo real** — resultados sincronizados via Socket.IO a cada 6 segundos (football-data.org)
-- **Probabilidades de vitória** — exibidas ao lado de cada time (api-football, atualizado a cada hora)
-- **Badge de status** — cada partida indica se está agendada, ao vivo ou encerrada
-- **Datas e horários** — localizados no fuso horário do usuário via `Intl.DateTimeFormat`
-- **Multi-idioma** — Português, English, Français, Español (detecção automática pelo navegador)
-- **Inputs bloqueados** — partidas encerradas com resultado da API têm o placar travado
+## Features
+
+- **Group stage** — 12 groups with 6 matches each, automatic standings by points, goal difference and head-to-head (FIFA rules)
+- **Best third-place teams** — automatic selection of the 8 best third-place finishers
+- **Knockout bracket** — R32 → R16 → QF → SF → Final with automatic advancement
+- **Real-time** — results synced via Socket.IO every 6 seconds (football-data.org)
+- **Win probabilities** — displayed next to each team (api-football, updated every hour)
+- **Match status badge** — each match shows whether it is upcoming, live or finished
+- **Dates and times** — localized to the user's timezone via `Intl.DateTimeFormat`
+- **Multi-language** — Português, English, Français, Español (auto-detected from browser)
+- **Locked inputs** — finished matches with API results have their score fields disabled
 
 ## Stack
 
-| Camada | Tecnologia |
-|--------|-----------|
+| Layer | Technology |
+|-------|-----------|
 | Framework | React 19 + Vite 8 |
-| Comunicação | Socket.IO client |
-| Bandeiras | flag-icons (ISO 3166-1 alpha-2) |
-| Estilo | CSS puro com variáveis |
-| API de partidas | [football-data.org](https://www.football-data.org/) (via copa-2026-api) |
-| API de probabilidades | [api-football](https://www.api-football.com/) (via copa-2026-api) |
+| Real-time | Socket.IO client |
+| Flags | flag-icons (ISO 3166-1 alpha-2) |
+| Styling | Plain CSS with custom properties |
+| Match API | [football-data.org](https://www.football-data.org/) (via copa-2026-api) |
+| Predictions API | [api-football](https://www.api-football.com/) (via copa-2026-api) |
 
-## Estrutura do projeto
+## Project structure
 
 ```
 src/
 ├── components/
-│   ├── Flag.jsx                  # Renderiza bandeira por código ISO
-│   ├── LiveBadge.jsx             # Indicador de conexão Socket.IO
+│   ├── Flag.jsx                  # Renders a flag by ISO country code
+│   ├── LiveBadge.jsx             # Socket.IO connection status indicator
 │   ├── group/
-│   │   ├── GroupMatchCard.jsx    # Card de partida da fase de grupos
-│   │   ├── GroupPanel.jsx        # Painel completo de um grupo
-│   │   └── GroupStandings.jsx    # Tabela de classificação do grupo
+│   │   ├── GroupMatchCard.jsx    # Group stage match card
+│   │   ├── GroupPanel.jsx        # Full group panel
+│   │   └── GroupStandings.jsx    # Group standings table
 │   └── bracket/
-│       ├── BestThirds.jsx        # Barra dos melhores terceiros
-│       ├── BracketConnector.jsx  # Linhas SVG entre rodadas
-│       ├── KOMatchCard.jsx       # Card de partida eliminatória
-│       └── RoundColumn.jsx       # Coluna de uma rodada do mata-mata
+│       ├── BestThirds.jsx        # Best third-place teams bar
+│       ├── BracketConnector.jsx  # SVG connector lines between rounds
+│       ├── KOMatchCard.jsx       # Knockout match card
+│       └── RoundColumn.jsx       # Single knockout round column
 ├── services/
-│   ├── groupStats.js             # Cálculo de pontos, saldo, confronto direto
-│   ├── bracket.js                # Lógica do chaveamento eliminatório
-│   └── dateFormat.js             # Formatação de datas por idioma
+│   ├── groupStats.js             # Points, goal difference, head-to-head logic
+│   ├── bracket.js                # Knockout bracket logic
+│   └── dateFormat.js             # Locale-aware date formatting
 ├── constants/
 │   └── bracket.js                # BASE_SLOT, TOTAL_H, CONN_W
-├── data.js                       # Times, grupos, datas e pareamentos R32
-├── i18n.jsx                      # Traduções e seletor de idioma
-├── matchMapper.js                # Mapeia football-data.org → estado do app
-├── predictionsMapper.js          # Mapeia api-football → probabilidades
-├── useMatchData.js               # Hook Socket.IO (matches + predictions)
-└── App.jsx                       # Composição e estado global
+├── data.js                       # Teams, groups, dates and R32 pairings
+├── i18n.jsx                      # Translations and language selector
+├── matchMapper.js                # Maps football-data.org response → app state
+├── predictionsMapper.js          # Maps api-football response → win probabilities
+├── useMatchData.js               # Socket.IO hook (matches + predictions)
+└── App.jsx                       # Global state and composition
 ```
 
-## Desenvolvimento
+## Development
 
-### Pré-requisitos
+### Prerequisites
 
 - Node.js 20+
-- [copa-2026-api](../copa-2026-api) rodando localmente
+- [copa-2026-api](../copa-2026-api) running locally
 
-### Instalação
+### Install
 
 ```bash
 npm install
 ```
 
-### Variáveis de ambiente
+### Environment variables
 
-Crie um arquivo `.env` na raiz:
+Copy `.env.example` to `.env`:
+
+```bash
+cp .env.example .env
+```
 
 ```env
 VITE_API_URL=http://localhost:3001
 ```
 
-### Iniciar em modo desenvolvimento
+### Start dev server
 
 ```bash
 npm run dev
 # http://localhost:5174
 ```
 
-### Build para produção
+### Production build
 
 ```bash
 npm run build
 npm run preview
 ```
 
-## Conexão com a API
+## API connection
 
-O front conecta via Socket.IO ao endereço definido em `VITE_API_URL`. Os eventos recebidos são:
+The frontend connects via Socket.IO to the address defined in `VITE_API_URL`. Events received:
 
-| Evento | Conteúdo | Frequência |
-|--------|----------|-----------|
-| `matches` | Partidas + placares + datas + status | A cada 6s (durante jogos) |
-| `predictions` | Probabilidades de vitória por partida | A cada 1h |
+| Event | Content | Frequency |
+|-------|---------|-----------|
+| `matches` | Matches + scores + dates + status | Every 6s (during live games) |
+| `predictions` | Win probabilities per match | Every 1h |
 
-Ao conectar, o servidor envia imediatamente o cache em memória — sem aguardar o próximo ciclo do poller.
+On connect, the server immediately sends the current in-memory cache — no waiting for the next poller cycle.
 
-## Regras de classificação (FIFA)
+## FIFA group stage tiebreakers
 
-Dentro de cada grupo, os times são ordenados por:
+Teams within each group are ranked by:
 
-1. Pontos
-2. Saldo de gols (geral)
-3. Gols marcados (geral)
-4. Pontos no confronto direto
-5. Saldo de gols no confronto direto
-6. Gols marcados no confronto direto
+1. Points
+2. Goal difference (overall)
+3. Goals scored (overall)
+4. Points in head-to-head matches
+5. Goal difference in head-to-head matches
+6. Goals scored in head-to-head matches
