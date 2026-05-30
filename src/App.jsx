@@ -1,4 +1,5 @@
 import { useState, useMemo, useEffect } from 'react'
+import { FaTrophy, FaFutbol, FaMedal, FaMugHot } from 'react-icons/fa6'
 import { GROUP_KEYS, GROUP_DATES, KO_DATES } from './data.js'
 import { useI18n, LanguageSelector } from './i18n.jsx'
 import { useMatchData } from './useMatchData.js'
@@ -139,14 +140,14 @@ export default function App() {
             copa-2026-api
           </a>
           <a className="header-link header-link-coffee" href="https://www.buymeacoffee.com/allanbarcelos" target="_blank" rel="noreferrer">
-            ☕ Buy me a coffee
+            <FaMugHot /> Buy me a coffee
           </a>
         </div>
       </header>
 
       {/* ── Fase de Grupos ── */}
       <section className="copa-section">
-        <h2 className="sec-title"><span>🏟️ {t.groupStageTitle}</span></h2>
+        <h2 className="sec-title"><span><FaFutbol /> {t.groupStageTitle}</span></h2>
         <div className="groups-grid">
           {GROUP_KEYS.map(g => (
             <GroupPanel
@@ -166,13 +167,13 @@ export default function App() {
 
       {/* ── Melhores Terceiros ── */}
       <section className="copa-section">
-        <h2 className="sec-title"><span>🥉 {t.thirdsTitle}</span></h2>
+        <h2 className="sec-title"><span><FaMedal /> {t.thirdsTitle}</span></h2>
         <BestThirds bestThirds={bestThirds} lang={lang} t={t} />
       </section>
 
       {/* ── Fase Eliminatória ── */}
       <section className="copa-section">
-        <h2 className="sec-title"><span>🏆 {t.knockoutTitle}</span></h2>
+        <h2 className="sec-title"><span><FaTrophy /> {t.knockoutTitle}</span></h2>
         <div className="bracket-scroll">
           <div className="bracket" style={{ height: TOTAL_H + 32 }}>
             {koRoundDefs.map((rd, ri) => {
@@ -223,7 +224,7 @@ export default function App() {
             copa-2026-api
           </a>
           <a className="footer-link footer-link-coffee" href="https://www.buymeacoffee.com/allanbarcelos" target="_blank" rel="noreferrer">
-            ☕ Buy me a coffee
+            <FaMugHot /> Buy me a coffee
           </a>
         </div>
         <span>© {new Date().getFullYear()} Barcelos.Dev</span>
