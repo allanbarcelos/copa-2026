@@ -46,13 +46,14 @@
 .tt-input:checked + .tt-slider .tt-sun-moon {
   transform: translateX(calc(var(--scale) * 26px));
   background-color: white;
-  animation: tt-rotate 0.6s ease-in-out both;
+  animation: tt-rotate 1.4s cubic-bezier(.25,.1,.25,1) both;
 }
 
 @keyframes tt-rotate {
   0%   { transform: translateX(calc(var(--scale) * 26px)) rotate(0deg);   }
   100% { transform: translateX(calc(var(--scale) * 26px)) rotate(360deg); }
 }
+
 
 /* ── Moon dots ─────────────────────────────────────────────────────────── */
 .tt-moon-dot {
