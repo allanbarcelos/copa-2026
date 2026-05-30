@@ -102,8 +102,10 @@ export default function App() {
       {/* ── Header ── */}
       <header className="copa-header">
         <div className="header-glow" />
-        <LanguageSelector />
-        <ThemeToggle theme={theme} onToggle={toggleTheme} />
+        <div className="header-top-right">
+          <ThemeToggle theme={theme} onToggle={toggleTheme} />
+          <LanguageSelector />
+        </div>
         <LiveBadge status={status} lastSync={lastSync} lang={lang} />
         <h1>
           {(() => {

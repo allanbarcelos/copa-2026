@@ -1,16 +1,12 @@
 /* ── Theme Toggle — original by RiccardoRapelli/uiverse.io (MIT) ─────────── */
 
 .tt-switch {
-  --scale: 1.4;
-  position: absolute;
-  top: 14px;
-  left: 50%;
-  transform: translateX(-50%);
+  --scale: 0.85;
   display: inline-block;
   width:  calc(var(--scale) * 60px);
   height: calc(var(--scale) * 34px);
   cursor: pointer;
-  z-index: 10;
+  flex-shrink: 0;
 }
 
 .tt-input {
@@ -24,7 +20,7 @@
   position: absolute;
   inset: 0;
   background-color: #2196f3;
-  transition: 0.4s;
+  transition: background-color .6s ease;
   overflow: hidden;
   z-index: 0;
 }
@@ -40,7 +36,7 @@
   bottom: calc(var(--scale) * 4px);
   background-color: yellow;
   border-radius: 50%;
-  transition: 0.4s;
+  transition: transform .6s cubic-bezier(.34,1.56,.64,1), background-color .6s ease;
 }
 
 .tt-input:checked + .tt-slider { background-color: #000; }
@@ -60,7 +56,7 @@
 /* ── Moon dots ─────────────────────────────────────────────────────────── */
 .tt-moon-dot {
   opacity: 0;
-  transition: 0.4s;
+  transition: opacity .5s ease;
   fill: gray;
   position: absolute;
   z-index: 4;
@@ -108,7 +104,7 @@
 .tt-stars {
   transform: translateY(calc(var(--scale) * -32px));
   opacity: 0;
-  transition: 0.4s;
+  transition: opacity .6s ease, transform .6s ease;
 }
 .tt-input:checked + .tt-slider .tt-stars {
   transform: translateY(0);
