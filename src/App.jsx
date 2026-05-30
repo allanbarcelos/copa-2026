@@ -2,6 +2,8 @@ import { useState, useMemo, useEffect } from 'react'
 import { GROUP_KEYS, GROUP_DATES, KO_DATES } from './data.js'
 import { useI18n, LanguageSelector } from './i18n.jsx'
 import { useMatchData } from './useMatchData.js'
+import { useTheme } from './useTheme.js'
+import ThemeToggle from './components/ThemeToggle.jsx'
 import { buildQualifiers, buildBestThirds } from './services/groupStats.js'
 import { LOCALE_MAP } from './services/dateFormat.js'
 import { initKOScores, buildKOBracket } from './services/bracket.js'
@@ -16,6 +18,7 @@ import './App.css'
 
 export default function App() {
   const { lang, t } = useI18n()
+  const { theme, toggleTheme, isAuto } = useTheme()
 
   // ── Estado dos placares ───────────────────────────────────────────────────
   const [groupScores, setGroupScores] = useState(() => {
@@ -100,6 +103,7 @@ export default function App() {
       <header className="copa-header">
         <div className="header-glow" />
         <LanguageSelector />
+        <ThemeToggle theme={theme} isAuto={isAuto} onToggle={toggleTheme} />
         <LiveBadge status={status} lastSync={lastSync} lang={lang} />
         <h1>
           {(() => {
