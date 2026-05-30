@@ -1,6 +1,9 @@
- # FIFA World Cup 2026 — Interactive Bracket
+# FIFA World Cup 2026 — Interactive Bracket
 
 > 🇧🇷 [Versão em Português](README.pt.md)
+
+[![GitHub](https://img.shields.io/badge/GitHub-copa--2026-181717?logo=github)](https://github.com/allanbarcelos/copa-2026)
+[![API Repo](https://img.shields.io/badge/GitHub-copa--2026--api-181717?logo=github)](https://github.com/allanbarcelos/copa-2026-api)
 
 React SPA displaying the complete FIFA World Cup 2026 bracket with real-time updates via Socket.IO.
 
@@ -117,3 +120,9 @@ Teams within each group are ranked by:
 4. Points in head-to-head matches
 5. Goal difference in head-to-head matches
 6. Goals scored in head-to-head matches
+
+---
+
+Open source project — contributions and feedback are welcome.
+
+I accept support for new projects ☕ [Buy me a coffee](https://www.buymeacoffee.com/allanbarcelos)

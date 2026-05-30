@@ -2,6 +2,9 @@
 
 > 🇬🇧 [English version](README.md)
 
+[![GitHub](https://img.shields.io/badge/GitHub-copa--2026-181717?logo=github)](https://github.com/allanbarcelos/copa-2026)
+[![API Repo](https://img.shields.io/badge/GitHub-copa--2026--api-181717?logo=github)](https://github.com/allanbarcelos/copa-2026-api)
+
 SPA em React que exibe o chaveamento completo da Copa do Mundo FIFA 2026, com atualização em tempo real via Socket.IO.
 
 ## Funcionalidades
@@ -117,3 +120,9 @@ Dentro de cada grupo, os times são ordenados por:
 4. Pontos no confronto direto
 5. Saldo de gols no confronto direto
 6. Gols marcados no confronto direto
+
+---
+
+Projeto open source — contribuições e feedbacks são bem-vindos.
+
+Aceito apoio para novos projetos ☕ [Buy me a coffee](https://www.buymeacoffee.com/allanbarcelos)
