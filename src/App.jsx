@@ -103,7 +103,7 @@ export default function App() {
       <header className="copa-header">
         <div className="header-glow" />
         <LanguageSelector />
-        <ThemeToggle theme={theme} isAuto={isAuto} onToggle={toggleTheme} />
+        <ThemeToggle theme={theme} onToggle={toggleTheme} />
         <LiveBadge status={status} lastSync={lastSync} lang={lang} />
         <h1>
           {(() => {

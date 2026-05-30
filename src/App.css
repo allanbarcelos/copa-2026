@@ -62,32 +62,6 @@ body {
   transition: background .3s, color .3s;
 }
 
-/* ── Theme toggle ───────────────────────────────────────────────────────── */
-.theme-toggle {
-  position: absolute;
-  top: 16px;
-  left: 50%;
-  transform: translateX(-50%);
-  background: var(--chip-bg);
-  border: 1px solid var(--border);
-  border-radius: 20px;
-  padding: 3px 10px;
-  cursor: pointer;
-  font-size: .85rem;
-  color: var(--text);
-  display: flex;
-  align-items: center;
-  gap: 4px;
-  transition: border-color .15s, background .15s;
-}
-.theme-toggle:hover { border-color: var(--border-hi); }
-.theme-auto-dot {
-  width: 5px;
-  height: 5px;
-  border-radius: 50%;
-  background: var(--green);
-  flex-shrink: 0;
-}
 
 .copa-app { min-height: 100vh; }
 
