@@ -3,6 +3,7 @@ import { GROUP_KEYS, GROUP_DATES, KO_DATES } from './data.js'
 import { useI18n, LanguageSelector } from './i18n.jsx'
 import { useMatchData } from './useMatchData.js'
 import { buildQualifiers, buildBestThirds } from './services/groupStats.js'
+import { LOCALE_MAP } from './services/dateFormat.js'
 import { initKOScores, buildKOBracket } from './services/bracket.js'
 import { BASE_SLOT, TOTAL_H } from './constants/bracket.js'
 import Flag from './components/Flag.jsx'
@@ -111,6 +112,16 @@ export default function App() {
             ) : t.appTitle
           })()}
         </h1>
+        <div className="title-hosts">
+          <Flag code="us" className="host-flag" />
+          <Flag code="ca" className="host-flag" />
+          <Flag code="mx" className="host-flag" />
+        </div>
+        <div className="title-dates">
+          {new Date('2026-06-11').toLocaleDateString(LOCALE_MAP[lang], { day: 'numeric', month: 'short' })}
+          {' – '}
+          {new Date('2026-07-19').toLocaleDateString(LOCALE_MAP[lang], { day: 'numeric', month: 'short', year: 'numeric' })}
+        </div>
         <p>{t.appSubtitle}</p>
         <div className="header-links">
           <a className="header-link" href="https://github.com/allanbarcelos/copa-2026" target="_blank" rel="noreferrer">
