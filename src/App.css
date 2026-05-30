@@ -547,6 +547,50 @@ input[type=number]::-webkit-outer-spin-button,
 input[type=number]::-webkit-inner-spin-button { -webkit-appearance: none; margin: 0; }
 input[type=number] { -moz-appearance: textfield; }
 
+/* ── Header links ────────────────────────────────────────────────────────── */
+.header-links {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  gap: 16px;
+  margin-top: 14px;
+  position: relative;
+  flex-wrap: wrap;
+}
+.header-link {
+  display: inline-flex;
+  align-items: center;
+  gap: 5px;
+  font-size: .75rem;
+  font-weight: 600;
+  color: var(--muted);
+  text-decoration: none;
+  padding: 4px 10px;
+  border-radius: 20px;
+  border: 1px solid var(--border);
+  background: rgba(255,255,255,.04);
+  transition: color .15s, border-color .15s, background .15s;
+}
+.header-link:hover {
+  color: var(--text);
+  border-color: var(--border-hi);
+  background: rgba(255,255,255,.08);
+}
+.header-link-coffee {
+  border-color: rgba(255,201,50,.3);
+  color: var(--gold);
+}
+.header-link-coffee:hover {
+  border-color: var(--gold);
+  background: rgba(255,201,50,.08);
+  color: var(--gold);
+}
+.header-link-icon {
+  width: 13px;
+  height: 13px;
+  flex-shrink: 0;
+}
+
 /* ── Footer ─────────────────────────────────────────────────────────────── */
 .copa-footer {
   text-align: center;
@@ -555,6 +599,50 @@ input[type=number] { -moz-appearance: textfield; }
   border-top: 1px solid var(--border);
   font-size: .78rem;
   color: var(--muted);
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 12px;
+}
+.footer-links {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  gap: 12px;
+  flex-wrap: wrap;
+}
+.footer-link {
+  display: inline-flex;
+  align-items: center;
+  gap: 5px;
+  font-size: .72rem;
+  font-weight: 600;
+  color: var(--muted);
+  text-decoration: none;
+  padding: 3px 9px;
+  border-radius: 20px;
+  border: 1px solid var(--border);
+  background: rgba(255,255,255,.03);
+  transition: color .15s, border-color .15s, background .15s;
+}
+.footer-link:hover {
+  color: var(--text);
+  border-color: var(--border-hi);
+  background: rgba(255,255,255,.07);
+}
+.footer-link-coffee {
+  border-color: rgba(255,201,50,.3);
+  color: var(--gold);
+}
+.footer-link-coffee:hover {
+  border-color: var(--gold);
+  background: rgba(255,201,50,.07);
+  color: var(--gold);
+}
+.footer-link-icon {
+  width: 12px;
+  height: 12px;
+  flex-shrink: 0;
 }
 
 /* ── Responsive ────────────────────────────────────────────────────────── */
