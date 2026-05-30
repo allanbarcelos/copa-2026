@@ -107,7 +107,7 @@ export default function App() {
           <LanguageSelector />
           <ThemeToggle theme={theme} onToggle={toggleTheme} />
         </div>
-        <LiveBadge status={status} lastSync={lastSync} lang={lang} />
+        <LiveBadge status={status} lang={lang} />
         <h1>
           {(() => {
             const m = t.appTitle.match(/^(.*?)(\d{4})$/)
