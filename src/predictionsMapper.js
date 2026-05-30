@@ -53,16 +53,21 @@ export function mapPredictions(data) {
     const awayInfo = lookupTeam(pred.awayTeam)
     if (!homeInfo || !awayInfo || homeInfo.grp !== awayInfo.grp) continue
 
-    const schedIdx = GROUP_SCHEDULE.findIndex(
+    let schedIdx = GROUP_SCHEDULE.findIndex(
       s => s.home === homeInfo.idx && s.away === awayInfo.idx
     )
+    let flipped = false
+    if (schedIdx === -1) {
+      schedIdx = GROUP_SCHEDULE.findIndex(
+        s => s.home === awayInfo.idx && s.away === homeInfo.idx
+      )
+      flipped = true
+    }
     if (schedIdx === -1) continue
 
-    result[homeInfo.grp][schedIdx] = {
-      home: pred.home,
-      draw: pred.draw,
-      away: pred.away,
-    }
+    result[homeInfo.grp][schedIdx] = flipped
+      ? { home: pred.away, draw: pred.draw, away: pred.home }
+      : { home: pred.home, draw: pred.draw, away: pred.away }
   }
 
   return result
